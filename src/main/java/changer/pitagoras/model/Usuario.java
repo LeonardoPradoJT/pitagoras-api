@@ -26,14 +26,7 @@ public class Usuario {
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.email = email;
-        setSenha(senha);
+        this.senha = Criptograma.encrypt(senha);
     }
 
-    public void setSenha(String senha) {
-        this.senha = new Criptograma().encrypt(senha);
-    }
-
-    public void atualizarSenha(String novaSenha) {
-        setSenha(senha);
-    }
 }

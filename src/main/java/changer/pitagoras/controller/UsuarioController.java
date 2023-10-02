@@ -6,12 +6,11 @@ import changer.pitagoras.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping({"/usuario"})
+@RequestMapping("/usuario")
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
@@ -57,13 +56,13 @@ public class UsuarioController {
     @PutMapping("/{uuid}/{novaSenha}")
     public ResponseEntity<Usuario> atualizarSenha(
             @PathVariable UUID uuid, @PathVariable String novaSenha) {
-        Usuario user = usuarioService.encontrarUsuario(uuid).;
+        Usuario user = usuarioService.encontrarUsuario(uuid);
 
         if (user == null) {
             return ResponseEntity.status(404).build();
         }
 
-        user.atualizarSenha(novaSenha);
+        usuarioService.atualizarSenha(novaSenha);
 
         return ResponseEntity.status(200).body(user);
     }

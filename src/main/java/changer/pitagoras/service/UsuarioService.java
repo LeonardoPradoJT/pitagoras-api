@@ -2,6 +2,7 @@ package changer.pitagoras.service;
 
 import changer.pitagoras.model.Usuario;
 import changer.pitagoras.repository.UsuarioRepository;
+import changer.pitagoras.util.Criptograma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -36,5 +37,9 @@ public class UsuarioService {
         }
 
         return resultado.get(0);
+    }
+
+    public void atualizarSenha(String novaSenha) {
+        Criptograma.encrypt(novaSenha);
     }
 }
