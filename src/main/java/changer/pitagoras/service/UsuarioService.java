@@ -3,6 +3,7 @@ package changer.pitagoras.service;
 import changer.pitagoras.model.Usuario;
 import changer.pitagoras.repository.UsuarioRepository;
 import changer.pitagoras.util.Criptograma;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -39,7 +40,8 @@ public class UsuarioService {
         return resultado.get(0);
     }
 
-    public void atualizarSenha(String novaSenha) {
-        Criptograma.encrypt(novaSenha);
+    @Transactional
+    public void atualizarSenha(String novaSenha, UUID uuid) {
+        usuarioRepository.updateSenha(Criptograma.encrypt(novaSenha), uuid);
     }
 }

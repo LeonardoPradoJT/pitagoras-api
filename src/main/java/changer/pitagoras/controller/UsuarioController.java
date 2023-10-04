@@ -62,7 +62,7 @@ public class UsuarioController {
             return ResponseEntity.status(404).build();
         }
 
-        usuarioService.atualizarSenha(novaSenha);
+        usuarioService.atualizarSenha(novaSenha, uuid);
 
         return ResponseEntity.status(200).body(user);
     }
